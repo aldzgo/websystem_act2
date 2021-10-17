@@ -60,7 +60,7 @@ class LikesController extends AppBaseController
 
         $likes = $this->likesRepository->create($input);
 
-        Flash::success('Likes saved successfully.');
+        $this->Flash::success('Likes saved successfully.');
 
         return redirect(route('likes.index'));
     }
@@ -77,7 +77,7 @@ class LikesController extends AppBaseController
         $likes = $this->likesRepository->find($id);
 
         if (empty($likes)) {
-            Flash::error('Likes not found');
+            $this->Flash::error('Likes not found');
 
             return redirect(route('likes.index'));   
         }
@@ -97,7 +97,7 @@ class LikesController extends AppBaseController
         $likes = $this->likesRepository->find($id);
 
         if (empty($likes)) {
-            Flash::error('Likes not found');
+            $this->Flash::error('Likes not found');
 
             return redirect(route('likes.index'));
         }
@@ -118,14 +118,14 @@ class LikesController extends AppBaseController
         $likes = $this->likesRepository->find($id);
 
         if (empty($likes)) {
-            Flash::error('Likes not found');
+            $this->Flash::error('Likes not found');
 
             return redirect(route('likes.index'));
         }
 
         $likes = $this->likesRepository->update($request->all(), $id);
 
-        Flash::success('Likes updated successfully.');
+        $this->Flash::success('Likes updated successfully.');
 
         return redirect(route('likes.index'));
     }
@@ -144,14 +144,14 @@ class LikesController extends AppBaseController
         $likes = $this->likesRepository->find($id);
 
         if (empty($likes)) {
-            Flash::error('Likes not found');
+            $this->Flash::error('Likes not found');
 
             return redirect(route('likes.index'));
         }
 
         $this->likesRepository->delete($id);
 
-        Flash::success('Likes deleted successfully.');
+        $this->Flash::success('Likes deleted successfully.');
 
         return redirect(route('likes.index'));
     }
@@ -162,7 +162,7 @@ class LikesController extends AppBaseController
             $like = new Likes;
             $like->post_id = $request['post_id'];
             $like->user_id = Auth::id();
-            $like->save();
+            $like->$this->save();
 
             return json_encode(['response' => true]);
         }

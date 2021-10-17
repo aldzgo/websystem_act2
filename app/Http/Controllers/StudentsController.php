@@ -58,7 +58,7 @@ class StudentsController extends AppBaseController
 
         $students = $this->studentsRepository->create($input);
 
-        Flash::success('Students saved successfully.');
+        $this->Flash::success('Students saved successfully.');
 
         return redirect(route('students.index'));
     }
@@ -75,7 +75,7 @@ class StudentsController extends AppBaseController
         $students = $this->studentsRepository->find($id);
 
         if (empty($students)) {
-            Flash::error('Students not found');
+            $this->Flash::error('Students not found');
 
             return redirect(route('students.index'));
         }
@@ -95,7 +95,7 @@ class StudentsController extends AppBaseController
         $students = $this->studentsRepository->find($id);
 
         if (empty($students)) {
-            Flash::error('Students not found');
+            $this->Flash::error('Students not found');
 
             return redirect(route('students.index'));
         }
@@ -116,14 +116,14 @@ class StudentsController extends AppBaseController
         $students = $this->studentsRepository->find($id);
 
         if (empty($students)) {
-            Flash::error('Students not found');
+            $this->Flash::error('Students not found');
 
             return redirect(route('students.index'));
         }
 
         $students = $this->studentsRepository->update($request->all(), $id);
 
-        Flash::success('Students updated successfully.');
+        $this->Flash::success('Students updated successfully.');
 
         return redirect(route('students.index'));
     }
@@ -142,14 +142,14 @@ class StudentsController extends AppBaseController
         $students = $this->studentsRepository->find($id);
 
         if (empty($students)) {
-            Flash::error('Students not found');
+            $this->Flash::error('Students not found');
 
             return redirect(route('students.index'));
         }
 
         $this->studentsRepository->delete($id);
 
-        Flash::success('Students deleted successfully.');
+        $this->Flash::success('Students deleted successfully.');
 
         return redirect(route('students.index'));
     }
